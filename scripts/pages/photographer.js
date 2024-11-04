@@ -1,4 +1,4 @@
-/* async function autorun() {
+async function autorun() {
     //récupération de l'id du photographe dans le lien
     const id = window.location.hash.substring(1);
     // Récupération des données des photographes du fichier json
@@ -17,9 +17,12 @@ async function getPhotographers() {
 
 function dataStorage(data) {
     window.localStorage.setItem("name", data.name);
-    const name = window.localStorage.getItem("name");
-
-    console.log(name);
+    //const name = window.localStorage.getItem("name");
+    window.localStorage.setItem("city", data.city);
+    window.localStorage.setItem("country", data.country);
+    window.localStorage.setItem("tagline", data.tagline);
+    window.localStorage.setItem("portrait", data.portrait);
+    console.log(id);
 }
 
-autorun(); */
+autorun();
