@@ -3,7 +3,6 @@
         const response = await fetch("data/photographers.json");
         const data = await response.json();
         // renvoi du tableau des photographes obtenu
-        console.log(data);
         return data
     }
 
