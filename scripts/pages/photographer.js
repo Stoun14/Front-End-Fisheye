@@ -51,7 +51,6 @@ function getCardDOM() {
 
 function dropdownMenu() {
     document.getElementById("Dropdown").classList.toggle("show");
-}
-  
+}  
 
 autorun();
