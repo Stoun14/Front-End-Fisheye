@@ -49,4 +49,9 @@ function getCardDOM() {
     return;
 }
 
+function dropdownMenu() {
+    document.getElementById("Dropdown").classList.toggle("show");
+}
+  
+
 autorun();
