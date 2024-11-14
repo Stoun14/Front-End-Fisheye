@@ -57,38 +57,40 @@ function dropdownMenu() {
 async function getPortfolio(id) {
     const { media } = await getPhotographers();
     const mediaList = media.filter(entry => entry.photographerId == id);
+    const name = getData("name");
+    let firstName = name.split(" ")[0];    
+    firstName = firstName.replace("-", " ");    
     const grid = document.getElementById("grid");
     mediaList.forEach(element => {
-        const grid = document.createElement( 'article' );
+        const article = document.createElement( 'article' );
+        grid.appendChild(article);
         const link = document.createElement( 'a' );
+        article.appendChild(link);
+        const frame = document.createElement( 'div' );
+        article.appendChild(frame);
+        if (element.image != null) {
+            const picture = `assets/images/${firstName}/${element.image}`;
+            const img = document.createElement( 'img' );
+            img.setAttribute("src", picture);
+            frame.appendChild(img);
+        } else {
+            const video = `assets/images/${firstName}/${element.video}`;
+            const vid = document.createElement( 'video' );
+            vid.setAttribute("src", video);
+            frame.appendChild(vid);
+        }
+        const info = document.createElement( 'p' );
+        info.setAttribute("class", "img-info");
+        article.appendChild(info);
+        const title = document.createElement( 'p' );
+        title.setAttribute("class", "title");
+        title.textContent = element.title;
+        info.appendChild(title);
+        const likes = document.createElement( 'p' );
+        likes.setAttribute("class", "likes");
+        likes.innerHTML = element.likes+'<i class="fa-solid fa-heart"></i>';
+        info.appendChild(likes);
     });
-    console.log(mediaList);
-    /* const article = document.createElement( 'article' );
-    const link = document.createElement( 'a' );
-    link.setAttribute("href", "photographer.html#"+id);
-    article.appendChild(link);
-    const div = document.createElement( 'div' );
-    div.setAttribute("class", "image");
-    link.appendChild(div);
-    const img = document.createElement( 'img' );
-    img.setAttribute("src", picture);
-    div.appendChild(img);
-    const h2 = document.createElement( 'h2' );
-    h2.textContent = name;        
-    link.appendChild(h2);
-    const location = document.createElement( 'p' );
-    location.setAttribute("class", "city");
-    location.textContent = city+", "+country;
-    article.appendChild(location);
-    const slogan = document.createElement( 'p' );
-    slogan.setAttribute("class", "tagline");
-    slogan.textContent = tagline;
-    article.appendChild(slogan);
-    const cost = document.createElement( 'p' );
-    cost.setAttribute("class", "price");
-    cost.textContent = price+"€/jour";
-    article.appendChild(cost);
-    return (article); */
 }
 
 autorun();
