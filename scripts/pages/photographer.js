@@ -54,9 +54,18 @@ function dropdownMenu() {
     document.getElementById("Dropdown").classList.toggle("show");
 }
 
+function sortMedia(list) {
+    const sortedList = list.sort(function (a, b) {
+        return b.likes - a.likes;
+    })
+    console.log(sortedList);
+    return sortedList;
+}
+
 async function getPortfolio(id) {
     const { media } = await getPhotographers();
-    const mediaList = media.filter(entry => entry.photographerId == id);
+    let mediaList = media.filter(entry => entry.photographerId == id);
+    mediaList = sortMedia(mediaList);
     const name = getData("name");
     let firstName = name.split(" ")[0];    
     firstName = firstName.replace("-", " ");    
