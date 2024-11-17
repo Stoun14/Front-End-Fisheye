@@ -25,22 +25,23 @@
           <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>        
         <div id="frame">
-          <img src="" alt="" id="portrait">
+          <!-- <img src="" alt="" id="portrait"> -->
         </div>
       </div>
       <div class="photograph-main">
-        <div class="dropdown">
-          <button role="listbox" tabindex="0" id="listbox1" onclick="return dropdownMenu()" aria-activedescendant="listbox1-1">
-            <div role="option" id="listbox1-1" class="selected">Popularité</div>
-            <div role="option" id="listbox1-2">Date</div>
-            <div role="option" id="listbox1-3">Titre</div>
+        <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="dropdown_button" id="dropdown" tabindex="0">
+          <button id="dropdown_button" role="button" onclick="return dropdownMenu()">
+            <div role="listbox" id="selected-option" style="display: none;">
+              <div role="option" id="option-1" aria-selected="true">Popularité</div>
+              <div role="option" id="option-2" aria-selected="false">Titre</div>
+            </div>
           </button>
         </div>
         <div id="grid">          
         </div>
       </div>
     </main>
-    <div class="lightbox-modal">
+    <div class="lightbox_modal">
       <button class="lightbox-close"></button>
       <button class="lightbox-prev"></button>
       <button class="lightbox-next"></button>
@@ -48,13 +49,19 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
+          <h2 id="modal_title">Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
 						<label>Prénom</label>
 						<input />
+            <label>Nom</label>
+						<input />
+            <label>Email</label>
+						<input />
+            <label>Votre message</label>
+						<input type="text" name="" id="" aria-rowcount="3">
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

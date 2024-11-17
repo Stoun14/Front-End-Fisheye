@@ -43,22 +43,81 @@ function getCardDOM() {
     const tagline = getData("tagline");
     const slogan = document.getElementById("tagline");
     slogan.innerText = tagline;
-    const portrait = getData("portrait");
+    /* const portrait = getData("portrait");
     const image = document.getElementById("portrait");
     image.setAttribute("src", `assets/photographers/${portrait}`);
-    image.setAttribute("alt", `portrait de ${name}`);    
+    image.setAttribute("alt", `portrait de ${name}`);  */   
     return;
 }
 
-function dropdownMenu() {
-    document.getElementById("Dropdown").classList.toggle("show");
-}
+/* function dropdownMenu() {
+    // Toggle dropdown visibility when combobox is clicked
+    document.getElementById('dropdown').addEventListener('click', function(event) {
+    const listbox = document.getElementById('listbox');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    
+    // Get the currently selected fruit
+    const selectedSortBy = document.getElementById('option-1').textContent;
+  
+    // Hide the selected fruit in the list
+    const options = document.querySelectorAll('[role="option"]');
+    options.forEach(option => {
+      if (option.textContent === selectedSortBy) {
+        option.style.display = 'none'; // Hide the selected option
+      } else {
+        option.style.display = 'block'; // Ensure other options are visible
+      }
+    });
+    
+    // Toggle visibility of the listbox
+    this.setAttribute('aria-expanded', !expanded);
+    listbox.style.display = expanded ? 'none' : 'block';
+  
+    // Prevent click event from closing dropdown immediately
+    event.stopPropagation();
+  });
+  
+  // Handle selection of an option
+  document.querySelectorAll('[role="option"]').forEach(option => {
+    option.addEventListener('click', function(event) {
+      const selectedFruit = document.getElementById('selected-fruit');
+      
+      // Update the selected fruit text
+      selectedFruit.textContent = this.textContent;
+      
+      // Mark this option as selected
+      document.querySelectorAll('[role="option"]').forEach(opt => {
+        opt.setAttribute('aria-selected', 'false');
+        opt.style.display = 'block'; // Ensure all options are visible when selecting
+      });
+      this.setAttribute('aria-selected', 'true');
+      
+      // Close the dropdown
+      document.getElementById('fruit-combobox').setAttribute('aria-expanded', 'false');
+      document.getElementById('fruit-list').style.display = 'none';
+  
+      // Prevent click event from bubbling and closing dropdown again
+      event.stopPropagation();
+    });
+  });
+  
+  // Close the dropdown when clicking outside the combobox
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('[role="combobox"]')) {
+      document.getElementById('fruit-combobox').setAttribute('aria-expanded', 'false');
+      document.getElementById('fruit-list').style.display = 'none';
+    }
+  });
+
+} */
 
 function sortMedia(list) {
-    const sortedList = list.sort(function (a, b) {
+    /* const sortedList = list.sort(function (a, b) {
         return b.likes - a.likes;
+    }) */
+    const sortedList = list.sort(function (a, b) {
+        return a.title.localeCompare(b.title);
     })
-    console.log(sortedList);
     return sortedList;
 }
 
