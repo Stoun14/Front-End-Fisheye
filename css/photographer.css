@@ -74,6 +74,7 @@ body {
     width: 350px;
     height: 300px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 #grid video {
@@ -141,3 +142,62 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+.lightbox_modal {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox {
+    width: 95%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 10%;
+    object-fit: cover;
+}
+
+.lightbox button {
+    position: fixed;
+    cursor: pointer;
+    border: none;
+    z-index: 999;
+}
+
+.lightbox-close {
+    background: url(../assets/icons/close_lightbox.svg) center center / 100% 100%;
+    top: 6%;
+    right: 6%;
+    left: auto;
+    width: 42px;
+    height: 42px;
+}
+
+.lightbox-prev, .lightbox-next {
+    background: url(../assets/icons/arrow.svg) center center / 100% 100%;
+    top: 50%;
+    left: 6%;
+    width: 30px;
+    height: 48px;
+}
+
+.lightbox-next {
+    right: 6%;
+    left: auto;
+    transform: rotate(180deg);
+}
+
+.lightbox img, .lightbox video {
+    max-width: 100%;
+    height: auto;
+}
+
