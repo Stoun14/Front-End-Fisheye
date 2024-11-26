@@ -1,9 +1,12 @@
+var mediaList = null;
+var photographer = null;
+
 async function autorun() {
     //récupération de l'id du photographe dans le lien
     const id = window.location.hash.substring(1);
     // Récupération des données des photographes du fichier json
     const { photographers } = await getPhotographers();
-    const photographer = photographers.find(entry => entry.id == id);
+    photographer = photographers.find(entry => entry.id == id);
     // Stockage des données du photographe dans le localStorage
     dataStorage(photographer);
     getCardDOM();
@@ -24,7 +27,8 @@ function dataStorage(data) {
     window.localStorage.setItem("city", data.city);
     window.localStorage.setItem("country", data.country);
     window.localStorage.setItem("tagline", data.tagline);
-    window.localStorage.setItem("portrait", data.portrait);    
+    window.localStorage.setItem("portrait", data.portrait);
+    window.localStorage.setItem("price", data.price);    
 }
 
 function getData(varName) {
@@ -33,10 +37,10 @@ function getData(varName) {
 }
 
 function getCardDOM() {
-    const name = getData("name");
+    const name = photographer.name;
     const photographerName = document.getElementById("name");
     photographerName.innerText = name;
-    const city = getData("city");
+    const city = photographer.city;
     const country = getData("country");
     const location = document.getElementById("location");
     location.innerText = city+", "+country;
@@ -123,20 +127,20 @@ function sortMedia(list) {
 
 async function getPortfolio(id) {
     const { media } = await getPhotographers();
-    let mediaList = media.filter(entry => entry.photographerId == id);
+    mediaList = media.filter(entry => entry.photographerId == id);
     mediaList = sortMedia(mediaList);   
     const grid = document.getElementById("grid");
     mediaList.forEach((element, index) => {
         const article = document.createElement( 'article' );
         grid.appendChild(article);        
-        const frame = document.createElement( 'div' );
-        frame.setAttribute("class", "grid-frame");
-        article.appendChild(frame);       
+        let frame = document.createElement( 'div' );
+        frame.setAttribute("class", "grid-frame");               
         const media = mediaChoice(element);
-        frame.appendChild(media);
-        media.addEventListener('click', function(event) {
+        frame.innerHTML = media;
+        article.appendChild(frame);
+        frame.addEventListener('click', function(event) {
           event.preventDefault;
-          lightbox(mediaList, index);
+          lightbox(index);
         })        
         const info = document.createElement( 'p' );
         info.setAttribute("class", "img-info");
@@ -152,88 +156,106 @@ async function getPortfolio(id) {
     });
 }
 
-function lightbox(list, index) {
-    const lightbox = document.getElementsByClassName( "lightbox_modal" )[0];    
-    const closeLightbox = document.getElementsByClassName( "lightbox-close" )[0];
+function lightbox(index) {
+    const lightbox = document.getElementsByClassName( "lightbox_modal" )[0];
+    const container = document.getElementsByClassName( "lightbox" )[0];
     const arrowLeft = document.getElementsByClassName( "lightbox-prev" )[0];
     const arrowRight = document.getElementsByClassName( "lightbox-next" )[0];
     lightbox.style.display = 'flex';
-    const media = mediaChoice(list[index]);
-    mediaDisplay(media);
-    closeLightbox.addEventListener('click', function(event) {        
-        closeModalLightbox(media);
-    })
+    const media = mediaChoice(mediaList[index]);
+    const lastElement = container.children[2];
+    lastElement.insertAdjacentHTML("afterend", media);
+    const prevIndex = indexPrev(index);
+    const nextIndex = indexNext(index);
     arrowLeft.addEventListener('click', function(event) {
-      let newIndex = null;
-        if (index != 0) {
-            newIndex = index;
-        } else {
-            newIndex = list.length - 1;
-        }
-        lightboxChange(list, index, newIndex);
-    })
+        event.preventDefault;
+        console.log("gauche");
+        console.log(prevIndex);
+        lightboxChange(prevIndex);
+    });
     arrowRight.addEventListener('click', function(event) {
-        let newIndex = null;
-        if (index != list.length) {
-            newIndex = index + 1;
-        } else {
-            newIndex = 0;
-        }
-        lightboxChange(list, index, newIndex);
-    })
+        event.preventDefault;
+        console.log("droite");
+        console.log(nextIndex);
+        lightboxChange(nextIndex);
+    });
     document.addEventListener('keyup', function (event) {
         const code = event.key;
         if (code === "Escape") {
-            closeModalLightbox(mediaElement);
+            closeModalLightbox();
         } else if (code === "ArrowLeft") {
-            lightboxPrevious(mediaElement);
+            lightboxChange(prevIndex);
         } else if (code === "ArrowRight") {
-            lightboxNext(mediaElement);
+            lightboxChange(nextIndex);
         }
     })
 }
 
-function closeModalLightbox(media) {
-    console.log(media);
-    media.remove();
+function indexPrev(index) {
+    let newIndex = null;
+    if (index != 0) {
+        newIndex = index - 1;
+    } else {
+        newIndex = mediaList.length - 1;
+    }
+    return newIndex;
+}
+
+function indexNext(index) {
+    let newIndex = null;
+    if (index != mediaList.length) {
+        newIndex = index + 1;
+    } else {
+        newIndex = 0;
+    }
+    return newIndex;
+}
+
+function mediaRemove() {
+    const container = document.getElementsByClassName( "lightbox" )[0];
+    const previousMedia = container.children[3];
+    if (previousMedia != null) {
+        previousMedia.remove();
+    }    
+}
+
+function closeModalLightbox() {    
     const lightbox = document.getElementsByClassName( "lightbox_modal" )[0];
+    mediaRemove();
     lightbox.style.display = "none";
 }
 
-function lightboxChange(media, index, newIndex) {
-    media = mediaChoice(media[index]);    
-    media.remove();
-    const newMedia = mediaChoice(media[newIndex]);
-    mediaDisplay(newMedia);
+function lightboxChange(index) {   
+    mediaRemove();
+    lightbox(index);
 }
 
 function mediaChoice(element) {    
-    const directory = directoryName();
-    if (element.image != undefined) {
-      const picture = `assets/images/${directory}/${element.image}`;
-      const img = document.createElement( 'img' );
-      img.setAttribute("src", picture);
-      return img;
-    } else {
-      const video = `assets/images/${directory}/${element.video}`;
-      const vid = document.createElement( 'video' );
-      vid.setAttribute("src", video);
-      return vid;
+    const directory = directoryName();    
+    if (element.image == null) {
+        const video = `assets/images/${directory}/${element.video}`;
+        const vid =  
+            `<video>
+                <source src="${video}">
+            </video>`;
+        return vid;        
+    } else if (element.video == null) {
+        const picture = `assets/images/${directory}/${element.image}`;
+        const img = `<img src="${picture}"  alt=""></img>`;
+        return img;
     }
 }
 
 function directoryName() {
-    const name = getData("name");
+    const name = photographer.name;
     let firstName = name.split(" ")[0];    
     firstName = firstName.replace("-", " ");
     return firstName;
 }
 
-function mediaDisplay(media) {
-    const container = document.getElementsByClassName( "lightbox" )[0];
-    const mediaElement = document.createElement(`${media.tagName}`);
-    mediaElement.src = `${media.src}`;
-    container.appendChild(mediaElement);
+function counterDisplay() {
+    const totalLikes = document.getElementsByClassName("counter");
+    
 }
 
 autorun();
