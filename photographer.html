@@ -29,14 +29,15 @@
         </div>
       </div>
       <div class="photograph-main">
-        <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="dropdown_button" id="dropdown" tabindex="0">
-          <button id="dropdown_button" role="button" onclick="return dropdownMenu()">
+        <label for="">Trier par</label>
+        <button role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="dropdown_button" id="dropdown" tabindex="0">
+          <div id="dropdown_button" role="button" onclick="dropdownMenu()">
             <div role="listbox" id="selected-option" style="display: none;">
               <div role="option" id="option-1" aria-selected="true">Popularité</div>
               <div role="option" id="option-2" aria-selected="false">Titre</div>
             </div>
-          </button>
-        </div>
+          </div>
+        </button>
         <div id="grid">          
         </div>
         <div class="counter">

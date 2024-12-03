@@ -60,7 +60,7 @@ function getCardDOM() {
     const listbox = document.getElementById('listbox');
     const expanded = this.getAttribute('aria-expanded') === 'true';
     
-    // Get the currently selected fruit
+    // Get the currently selected item
     const selectedSortBy = document.getElementById('option-1').textContent;
   
     // Hide the selected fruit in the list
@@ -149,10 +149,17 @@ async function getPortfolio(id) {
         title.setAttribute("class", "title");
         title.textContent = element.title;
         info.appendChild(title);
+        counterDisplay(element.likes);
         const likes = document.createElement( 'p' );
         likes.setAttribute("class", "likes");
-        likes.innerHTML = element.likes+'<i class="fa-solid fa-heart"></i>';
-        info.appendChild(likes);
+        const heart = '<i class="fa-solid fa-heart"></i>';
+        likes.innerHTML = element.likes + heart;        
+        likes.addEventListener('click', function(event) {
+            const nbLikes = element.likes + 1;
+            likes.innerHTML = nbLikes + heart;
+            counterDisplay(1)           
+        })
+        info.appendChild(likes);        
     });
 }
 
@@ -253,9 +260,10 @@ function directoryName() {
     return firstName;
 }
 
-function counterDisplay() {
-    const totalLikes = document.getElementsByClassName("counter");
-    
+function counterDisplay(nb) {
+    const totalLikes = document.getElementsByClassName("likes_counter");
+    const nbLikes = nb + totalLikes;
+    totalLikes.innerHTML = nbLikes + '<i class="fa-solid fa-heart"></i>';
 }
 
 autorun();
