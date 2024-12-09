@@ -148,7 +148,7 @@ form input {
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 99;
+    z-index: 999;
     background-color: white;
     display: none;
     align-items: center;
@@ -201,3 +201,28 @@ form input {
     height: auto;
 }
 
+.counter {
+    display: flex;
+    background-color: #D3573C;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 100%;
+    right: 98%;
+    height: 90px;
+    width: 376px;
+}
+
+.counter p {
+    color: black;
+}
+
+.sort_container {
+    margin: 0 100px;
+}
+
+.img-info {
+    color: #D3573C;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
