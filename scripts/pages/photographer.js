@@ -97,7 +97,7 @@ function dropdownMenu() {
       this.setAttribute('aria-selected', 'true');
       
       // Close the dropdown
-      document.getElementById('fruit-combobox').setAttribute('aria-expanded', 'false');
+      document.getElementById('combobox').setAttribute('aria-expanded', 'false');
       document.getElementById('fruit-list').style.display = 'none';
   
       // Prevent click event from bubbling and closing dropdown again
@@ -186,6 +186,32 @@ function sortMedia(list) {
     return sortedList;
 }
 
+function directoryName() {
+  const name = photographer.name;
+  let firstName = name.split(" ")[0];    
+  firstName = firstName.replace("-", " ");
+  return firstName;
+}
+
+function mediaChoice(element) {  
+  const directory = directoryName();
+  if (element == undefined) {
+      return "";
+  }  
+  else if (element?.image == null) {
+      const video = `assets/images/${directory}/${element.video}`;
+      const vid =  
+          `<video>
+              <source src="${video}">
+          </video>`;
+      return vid;        
+  } else if (element?.video == null) {
+      const picture = `assets/images/${directory}/${element.image}`;
+      const img = `<img src="${picture}"  alt=""></img>`;
+      return img;
+  }
+}
+
 async function getPortfolio(id) {
     const { media } = await getPhotographers();
     mediaList = media.filter(entry => entry.photographerId == id);
@@ -195,9 +221,9 @@ async function getPortfolio(id) {
         const article = document.createElement( 'article' );
         grid.appendChild(article);        
         let frame = document.createElement( 'div' );
-        frame.setAttribute("class", "grid-frame");               
-        const media = mediaChoice(element);
-        frame.innerHTML = media;
+        frame.setAttribute("class", "grid-frame");             
+        const gridMedia = mediaChoice(element);        
+        frame.innerHTML = gridMedia;
         article.appendChild(frame);
         frame.setAttribute("onclick", `displayLightbox(${index})`);     
         const info = document.createElement( 'p' );
