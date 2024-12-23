@@ -25,22 +25,33 @@
           <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>        
         <div id="frame">
-          <!-- <img src="" alt="" id="portrait"> -->
+
         </div>
       </div>
       <div class="photograph-main">
-        <div class="sort_container">
-          <label for="">Trier par</label>
-          <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="dropdown_button" id="dropdown" tabindex="0">
-            <div id="dropdown_button" role="button" onclick="dropdownMenu()">
-              <div role="listbox" id="selected-option" style="display: none;">
-                <div role="option" id="option-1" aria-selected="true">Popularité</div>
-                <div role="option" id="option-2" aria-selected="false">Titre</div>
+        <div class="photograph-sort">
+          <label for="order_by">Trier par</label>
+          <div class="sort_container">
+            <select name="order_by" id="order_by">
+              <option value="0">Titre</option>
+              <option value="1" selected>Popularité</option>
+              <!-- <option value="2"></option> -->
+            </select>
+            <div class="new-select">
+              <span>Titre<img src="assets/icons/selector_up.svg" alt=""></span>
+              <div class="line"></div>             
+              <div class="option0">
+                Titre
+              </div>
+              <div class="line"></div>
+              <div class="option1">
+                Popularité
               </div>
             </div>
           </div>
         </div>
-        <div id="grid">          
+        <div id="grid">
+                   
         </div>
         <div class="counter">
           <p class="likes_counter"></p>

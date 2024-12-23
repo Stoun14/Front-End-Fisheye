@@ -54,17 +54,26 @@ async function getCardDOM() {
     return;
 }
 
+window.onload = () => {
+  const selectElement = document.getElementById("order_by");
+  const sortContainer = document.getElementById("sort_container");
+  const newSelect = document.createElement( "div" );
+  newSelect.classList.add("new-select");
+  sortContainer.appendChild(newSelect);
+  newSelect.innerHTML = selectElement.options[selectElement.selectedIndex].innerHTML;
+}
+
 function dropdownMenu() {
     // Toggle dropdown visibility when combobox is clicked
-    document.getElementById('dropdown').addEventListener('click', function(event) {
-    const listbox = document.getElementById('listbox');
-    const expanded = this.getAttribute('aria-expanded') === 'true';
+    document.getElementById('order_by').addEventListener('click', function(event) {
+    /* const listbox = document.getElementById('listbox');
+    const expanded = this.getAttribute('aria-expanded') === 'true'; */
     
     // Get the currently selected item
     const selectedSortBy = document.getElementById('option-1').textContent;
   
     // Hide the selected item in the list
-    const options = document.querySelectorAll('[role="option"]');
+    const options = document.querySelectorAll("option");
     options.forEach(option => {
       if (option.textContent === selectedSortBy) {
         option.style.display = 'none'; // Hide the selected option
@@ -176,11 +185,11 @@ function dropdownMenu() {
 
 } */
 
-function sortMedia(list) {
-    /* const sortedList = list.sort(function (a, b) {
+function sortMedia() {
+    /* const sortedList = mediaList.sort(function (a, b) {
         return b.likes - a.likes;
     }) */
-    const sortedList = list.sort(function (a, b) {
+    const sortedList = mediaList.sort(function (a, b) {
         return a.title.localeCompare(b.title);
     })
     return sortedList;
@@ -215,7 +224,7 @@ function mediaChoice(element) {
 async function getPortfolio(id) {
     const { media } = await getPhotographers();
     mediaList = media.filter(entry => entry.photographerId == id);
-    mediaList = sortMedia(mediaList);   
+    mediaList = sortMedia();   
     const grid = document.getElementById("grid");
     mediaList.forEach((element, index) => {
         const article = document.createElement( 'article' );
@@ -227,7 +236,8 @@ async function getPortfolio(id) {
         article.appendChild(frame);
         frame.setAttribute("onclick", `displayLightbox(${index})`);     
         const info = document.createElement( 'p' );
-        info.setAttribute("class", "img-info");
+        info.classList.add("img-info")
+        // info.setAttribute("class", "img-info");
         article.appendChild(info);
         const title = document.createElement( 'p' );
         title.setAttribute("class", "title");

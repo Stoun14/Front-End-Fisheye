@@ -6,34 +6,12 @@ const arrowRight = document.getElementsByClassName( "lightbox-next" )[0];
 
 const indexPrev = event => {
     event.preventDefault;
-    const index = getMediaID();
-    let newIndex = null;
-    if (index != 0) {
-        newIndex = index - 1;
-    } else {
-        newIndex = mediaList.length - 1;
-    }
-    count += 1;
-    console.log("gauche");
-    console.log(index);
-    console.log(newIndex);
-    lightboxChange(newIndex);
+    previous();
 }
 
 const indexNext = event => {
     event.preventDefault;
-    const index = getMediaID();
-    let newIndex = null;
-    if (index != mediaList.length - 1) {
-        newIndex = index + 1;
-    } else {
-        newIndex = 0;
-    }
-    count += 1;
-    console.log("droite");
-    console.log(index);
-    console.log(newIndex);
-    lightboxChange(newIndex);
+    next();
 }
 
 function elementDisplay() {
@@ -60,15 +38,7 @@ function displayLightbox(index) {
     const lastElement = container.children[2];
     lastElement.insertAdjacentHTML("afterend", element);
     arrowLeft.addEventListener('click', indexPrev);
-    arrowRight.addEventListener('click', indexNext);
-    /* arrowRight.addEventListener('click', (event) => {
-        nextIndex = indexNext(index);
-        count += 1;
-        console.log("droite");
-        console.log(index);
-        console.log(nextIndex);
-        lightboxChange(nextIndex);
-    }); */
+    arrowRight.addEventListener('click', indexNext);   
     document.addEventListener('keyup', keyUp);    
 }
 
@@ -77,9 +47,9 @@ const keyUp = event => {
     if (code === "Escape") {
         closeLightbox();
     } else if (code === "ArrowLeft") {
-        return indexPrev;
+        previous();
     } else if (code === "ArrowRight") {
-        return indexNext;
+        next();
     } 
 }
 
@@ -98,7 +68,7 @@ function mediaRemove() {
     if (previousMedia != null) {
         previousMedia.remove();
     }
-    
+
 }
 
 function lightboxChange(index) { 
@@ -138,4 +108,34 @@ function getMediaID() {
     let id = mediaList.findIndex(entry => entry.id === media.id);
     console.log("l'Id est:" + id );
     return id; 
+}
+
+function previous() {
+    const index = getMediaID();
+    let newIndex = null;
+    if (index != 0) {
+        newIndex = index - 1;
+    } else {
+        newIndex = mediaList.length - 1;
+    }
+    count += 1;
+    console.log("gauche");
+    console.log(index);
+    console.log(newIndex);
+    lightboxChange(newIndex);
+}
+
+function next() {
+    const index = getMediaID();
+    let newIndex = null;
+    if (index != mediaList.length - 1) {
+        newIndex = index + 1;
+    } else {
+        newIndex = 0;
+    }
+    count += 1;
+    console.log("droite");
+    console.log(index);
+    console.log(newIndex);
+    lightboxChange(newIndex);
 }

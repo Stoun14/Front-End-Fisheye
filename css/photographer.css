@@ -57,14 +57,16 @@ body {
     object-fit: cover;
 }
 
-/* #portrait {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-} */
+.photograph-main {
+    margin: 0 100px;
+}
+
+.photograph-sort {
+    display: flex;
+    height: 100px;
+}
 
 #grid {
-    margin: 0 100px;
     display: grid;
     grid-template-columns: repeat(3, 350px);
     justify-content: space-between;
@@ -81,6 +83,7 @@ body {
     width: 350px;
     height: 300px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .modal {
@@ -217,7 +220,8 @@ form input {
 }
 
 .sort_container {
-    margin: 0 100px;
+    height: 68px;
+    width: 170px;
 }
 
 .img-info {
@@ -225,4 +229,36 @@ form input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+#order_by {
+    display: none;
+}
+
+.new-select {
+    background-color: #901C1C;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 0 20px;
+    margin-left: 25px;
+    position: relative;
+    z-index: 9;
+}
+
+.new-select span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
+    height: 70px;
+}
+
+.new-select span img {
+    height: 10px;
+    width: 16px;
+    rotate: 180deg;
 }

@@ -32,29 +32,59 @@ h1 {
 }
 
 .photographer_section article {
-    justify-self: center;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
+    gap: 3px;
+}
+
+.photographer_section article a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
 }
 
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    margin-bottom: 5px;    
 }
 
-/* .image {
+.city, .tagline, .price {
+    margin: 0;
+}
+
+.city {
+    font-size: 13px;
+    color: #901C1C;
+}
+
+.tagline {
+    font-size: 10px;
+}
+
+.price {
+    font-size: 9px;
+    color: #757575;
+}
+
+.image {
+    overflow: hidden;
     height: 200px;
     width: 200px;
-    overflow: hidden;
     border-radius: 100px;
-} */
-
-.photographer_section article img {
-    height: 200px;
-    width: 200px;    
-    object-fit: cover;
-    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url("/assets/photographers/RhodeDubois.jpg"); */
 }
 
+.photographer_section article img {
+    height: 358px;
+    width: 526px;
+    /* object-fit: cover; */
+    /* border-radius: 100px; */
+    /* object-position: 0 center; */
+}
