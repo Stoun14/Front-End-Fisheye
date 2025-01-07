@@ -53,7 +53,7 @@ body {
     height: 200px;
     border-radius: 100px;
     overflow: hidden;
-    background-image: url("../assets/photographers/TracyGalindo.jpg");
+    
     object-fit: cover;
 }
 
@@ -63,13 +63,14 @@ body {
 
 .photograph-sort {
     display: flex;
-    height: 100px;
+    padding: 15px 0;
 }
 
 #grid {
     display: grid;
     grid-template-columns: repeat(3, 350px);
     justify-content: space-between;
+    gap: 20px 0;
 }
 
 #grid img {
@@ -229,6 +230,23 @@ form input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 8px 0 10px;
+    padding: 0;
+}
+
+.title, .likes {
+    margin: 0;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.photograph-sort label {
+    margin-right: 25px;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 #order_by {
@@ -242,23 +260,41 @@ form input {
     justify-content: center;
     flex-direction: column;
     font-size: 18px;
+    width: 170px;
     border-radius: 5px;
-    padding: 0 20px;
-    margin-left: 25px;
     position: relative;
-    z-index: 9;
+    z-index: 2;
+    cursor: pointer;
 }
 
 .new-select span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 170px;
     height: 70px;
+    padding: 0 10px;
 }
 
-.new-select span img {
+.arrow {
     height: 10px;
     width: 16px;
     rotate: 180deg;
+}
+
+.new-select .line {
+    width: 150px;
+    height: 1px;
+    position: absolute;
+    left: 10px;
+    background-color: #FFFFFF;
+    display: none;
+}
+
+.new-select .option {
+    height: 50px;
+    padding: 0 10px;
+}
+
+.select-hide {
+    display: none;
 }
