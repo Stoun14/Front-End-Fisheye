@@ -5,6 +5,9 @@ body {
     margin: 0;
 }
 
+/**************/
+/**  header  **/
+/**************/
 
 header {
     display: flex;
@@ -24,6 +27,10 @@ h1 {
     margin-left: 100px;
 }
 
+/************/
+/**  main  **/
+/************/
+
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -33,7 +40,6 @@ h1 {
 
 .photographer_section article {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     gap: 3px;
@@ -78,13 +84,9 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: url("/assets/photographers/RhodeDubois.jpg"); */
 }
 
 .photographer_section article img {
     height: 358px;
     width: 526px;
-    /* object-fit: cover; */
-    /* border-radius: 100px; */
-    /* object-position: 0 center; */
 }
