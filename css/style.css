@@ -78,7 +78,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: url("/assets/photographers/RhodeDubois.jpg"); */
 }
 
 .photographer_section article img {

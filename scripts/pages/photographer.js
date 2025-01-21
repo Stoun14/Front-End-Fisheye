@@ -2,7 +2,7 @@ let mediaList = null;
 let photographer = null;
 
 async function autorun() {
-    //récupération de l'id du photographe dans le lien
+    // Récupération de l'id du photographe dans le lien
     const id = window.location.hash.substring(1);
     // Récupération des données des photographes du fichier json
     const { photographers } = await getPhotographers();
@@ -10,7 +10,9 @@ async function autorun() {
     // Stockage des données du photographe dans le localStorage
     dataStorage(photographer);
     getCardDOM();
-    getPortfolio(id);
+    const { media } = await getPhotographers();
+    mediaList = media.filter(entry => entry.photographerId == id);
+    counter(0);    
 }
 
 async function getPhotographers() {
@@ -47,152 +49,95 @@ async function getCardDOM() {
     const tagline = getData("tagline");
     const slogan = document.getElementById("tagline");
     slogan.innerText = tagline;
-    /* const portrait = getData("portrait");
+    const portrait = getData("portrait");
     const image = document.getElementById("portrait");
     image.setAttribute("src", `assets/photographers/${portrait}`);
-    image.setAttribute("alt", `portrait de ${name}`);  */   
+    image.setAttribute("alt", `portrait de ${name}`);   
     return;
 }
 
 window.onload = () => {
-  const selectElement = document.getElementById("order_by");
-  const sortContainer = document.getElementById("sort_container");
-  const newSelect = document.createElement( "div" );
-  newSelect.classList.add("new-select");
-  sortContainer.appendChild(newSelect);
-  newSelect.innerHTML = selectElement.options[selectElement.selectedIndex].innerHTML;
-}
 
-function dropdownMenu() {
-    // Toggle dropdown visibility when combobox is clicked
-    document.getElementById('order_by').addEventListener('click', function(event) {
-    /* const listbox = document.getElementById('listbox');
-    const expanded = this.getAttribute('aria-expanded') === 'true'; */
-    
-    // Get the currently selected item
-    const selectedSortBy = document.getElementById('option-1').textContent;
+  autorun();
+
+  console.log(mediaList);
   
-    // Hide the selected item in the list
-    const options = document.querySelectorAll("option");
-    options.forEach(option => {
-      if (option.textContent === selectedSortBy) {
-        option.style.display = 'none'; // Hide the selected option
-      } else {
-        option.style.display = 'block'; // Ensure other options are visible
+  const selectElement = document.querySelector(".order_by");
+  const sortContainer = document.querySelector(".sort_container");
+  sortContainer.innerHTML += `
+      <div class="new-select">
+          <div class="main-option"><img src="assets/icons/selector_up.svg" alt="" class="arrow"></div>
+          <div class="option-list select-hide"></div>
+      </div>`;
+
+  const newSelect = document.querySelector(".new-select");
+  const selectButton = document.querySelector(".main-option");
+  const arrow = document.querySelector(".arrow");
+  const optionList = document.querySelector(".option-list");
+
+  const selectedOption = selectElement.options[selectElement.selectedIndex]; 
+  if (selectedOption) {
+      selectButton.insertAdjacentHTML('afterbegin', selectedOption.innerText);
+  }
+
+  sortMedia();
+
+  const optionArray = Array.from(selectElement.options);
+  optionArray.forEach((option, index) => {
+      const newOption = document.createElement("div");
+      newOption.classList.add(`options[${index}]`);
+      newOption.innerText = option.innerText;
+      optionList.appendChild(newOption);
+
+      const line = document.createElement("div");
+      line.classList.add(`line[${index}]`);
+      newSelect.appendChild(line);
+      line.style.top = `${(index * 52) + 60}px`;
+
+      if (newOption.innerText === selectedOption.innerText) {
+          newOption.style.display = "none";
+          line.style.display = "none";
       }
-    });
-    
-    // Toggle visibility of the listbox
-    this.setAttribute('aria-expanded', !expanded);
-    listbox.style.display = expanded ? 'none' : 'block';
-  
-    // Prevent click event from closing dropdown immediately
-    event.stopPropagation();
-  });
-  
-  // Handle selection of an option
-  document.querySelectorAll('[role="option"]').forEach(option => {
-    option.addEventListener('click', function(event) {
-      const selectedFruit = document.getElementById('selected-fruit');
-      
-      // Update the selected item text
-      selectedFruit.textContent = this.textContent;
-      
-      // Mark this option as selected
-      document.querySelectorAll('[role="option"]').forEach(opt => {
-        opt.setAttribute('aria-selected', 'false');
-        opt.style.display = 'block'; // Ensure all options are visible when selecting
+
+      newOption.addEventListener("click", function () {
+          const previousText = selectButton.innerText;
+          selectButton.innerText = this.innerText;
+          this.innerText = previousText; 
+
+          selectElement.selectedIndex = index; 
+          
+          newSelect.click;
+
+          sortMedia();
       });
-      this.setAttribute('aria-selected', 'true');
-      
-      // Close the dropdown
-      document.getElementById('combobox').setAttribute('aria-expanded', 'false');
-      document.getElementById('fruit-list').style.display = 'none';
-  
-      // Prevent click event from bubbling and closing dropdown again
+  });
+
+  newSelect.appendChild(optionList);
+  newSelect.addEventListener("click", function (event) {
       event.stopPropagation();
-    });
+      optionList.classList.toggle("select-hide");
+      const active = this.classList.toggle("active");
+      arrow.style.rotate = active ? '0deg' : '180deg';
   });
-  
-  // Close the dropdown when clicking outside the combobox
-  document.addEventListener('click', function(event) {
-    if (!event.target.closest('[role="combobox"]')) {
-      document.getElementById('fruit-combobox').setAttribute('aria-expanded', 'false');
-      document.getElementById('fruit-list').style.display = 'none';
-    }
-  });
+};
 
-}
 
-/* function dropdownMenu() {
-    // Toggle dropdown visibility when combobox is clicked
-    document.getElementById('dropdown').addEventListener('click', function(event) {
-    const listbox = document.getElementById('listbox');
-    const expanded = this.getAttribute('aria-expanded') === 'true';
-    
-    // Get the currently selected item
-    const selectedSortBy = document.getElementById('option-1').textContent;
-  
-    // Hide the selected fruit in the list
-    const options = document.querySelectorAll('[role="option"]');
-    options.forEach(option => {
-      if (option.textContent === selectedSortBy) {
-        option.style.display = 'none'; // Hide the selected option
-      } else {
-        option.style.display = 'block'; // Ensure other options are visible
-      }
-    });
-    
-    // Toggle visibility of the listbox
-    this.setAttribute('aria-expanded', !expanded);
-    listbox.style.display = expanded ? 'none' : 'block';
-  
-    // Prevent click event from closing dropdown immediately
-    event.stopPropagation();
-  });
-  
-  // Handle selection of an option
-  document.querySelectorAll('[role="option"]').forEach(option => {
-    option.addEventListener('click', function(event) {
-      const selectedFruit = document.getElementById('selected-fruit');
-      
-      // Update the selected fruit text
-      selectedFruit.textContent = this.textContent;
-      
-      // Mark this option as selected
-      document.querySelectorAll('[role="option"]').forEach(opt => {
-        opt.setAttribute('aria-selected', 'false');
-        opt.style.display = 'block'; // Ensure all options are visible when selecting
-      });
-      this.setAttribute('aria-selected', 'true');
-      
-      // Close the dropdown
-      document.getElementById('fruit-combobox').setAttribute('aria-expanded', 'false');
-      document.getElementById('fruit-list').style.display = 'none';
-  
-      // Prevent click event from bubbling and closing dropdown again
-      event.stopPropagation();
-    });
-  });
-  
-  // Close the dropdown when clicking outside the combobox
-  document.addEventListener('click', function(event) {
-    if (!event.target.closest('[role="combobox"]')) {
-      document.getElementById('fruit-combobox').setAttribute('aria-expanded', 'false');
-      document.getElementById('fruit-list').style.display = 'none';
-    }
-  });
-
-} */
 
 function sortMedia() {
-    /* const sortedList = mediaList.sort(function (a, b) {
-        return b.likes - a.likes;
-    }) */
-    const sortedList = mediaList.sort(function (a, b) {
-        return a.title.localeCompare(b.title);
-    })
-    return sortedList;
+    if (!mediaList || !Array.isArray(mediaList)) {
+      console.error("mediaList n'est pas défini ou n'est pas un tableau.");
+      return;
+    }
+
+    const sortedList = [...mediaList];
+    const mainOption = document.querySelector(".main-option").innerText.trim();
+    if (mainOption === "popularité") {
+      sortedList.sort((a, b) => b.likes - a.likes);
+    } else {
+      sortedList.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    
+    getPortfolio();    
 }
 
 function directoryName() {
@@ -211,20 +156,17 @@ function mediaChoice(element) {
       const video = `assets/images/${directory}/${element.video}`;
       const vid =  
           `<video>
-              <source src="${video}">
+              <source src="${video}" alt="${element.title}, closeup view">
           </video>`;
       return vid;        
   } else if (element?.video == null) {
       const picture = `assets/images/${directory}/${element.image}`;
-      const img = `<img src="${picture}"  alt=""></img>`;
+      const img = `<img src="${picture}" alt="${element.title}, closeup view"></img>`;
       return img;
   }
 }
 
-async function getPortfolio(id) {
-    const { media } = await getPhotographers();
-    mediaList = media.filter(entry => entry.photographerId == id);
-    mediaList = sortMedia();   
+async function getPortfolio() {
     const grid = document.getElementById("grid");
     mediaList.forEach((element, index) => {
         const article = document.createElement( 'article' );
@@ -237,31 +179,32 @@ async function getPortfolio(id) {
         frame.setAttribute("onclick", `displayLightbox(${index})`);     
         const info = document.createElement( 'p' );
         info.classList.add("img-info")
-        // info.setAttribute("class", "img-info");
         article.appendChild(info);
         const title = document.createElement( 'p' );
         title.setAttribute("class", "title");
         title.textContent = element.title;
         info.appendChild(title);
-        const heart = '  <i class="fa-solid fa-heart"></i>';
-        const totalLikes = document.getElementsByClassName("likes_counter");
-        totalLikes.innerHTML = counter(element.likes) + heart;
+        const heart = '  <i class="fa-solid fa-heart"></i>';        
         const likes = document.createElement( 'p' );
         likes.setAttribute("class", "likes");        
         likes.innerHTML = element.likes + heart;        
         likes.addEventListener('click', () => {
             const nbLikes = element.likes + 1;
             likes.innerHTML = nbLikes + heart;
-            totalLikes.innerHTML = counter(1) + heart;           
+            counter(1);           
         })
         info.appendChild(likes);        
     });
 }
 
 function counter(nb) {
-    const totalLikes = document.getElementsByClassName("likes_counter");
-    const nbLikes = nb + totalLikes;    
-    return nbLikes;
+    let totalLikes = 0
+    mediaList.forEach((element) => {
+      totalLikes += element.likes;
+    })
+    const totalLikesCounter = document.querySelector(".likes_counter");
+    const cost = document.querySelector(".cost")
+    cost.innerHTML = photographer.price + " €/jour";
+    const nbLikes = nb + totalLikes;
+    totalLikesCounter.innerHTML = nbLikes + '  <i class="fa-solid fa-heart"></i>';
 }
-
-autorun();

@@ -49,12 +49,18 @@ body {
 }
 
 #frame {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
     overflow: hidden;
-    background-image: url("../assets/photographers/TracyGalindo.jpg");
-    object-fit: cover;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#frame img {
+    height: 358px;
+    width: 526px;
 }
 
 .photograph-main {
@@ -63,19 +69,25 @@ body {
 
 .photograph-sort {
     display: flex;
-    height: 100px;
+    margin: 20px 0;
+}
+
+.sort_container {
+    padding-left: 25px;
 }
 
 #grid {
     display: grid;
     grid-template-columns: repeat(3, 350px);
     justify-content: space-between;
+    gap: 25px;
 }
 
 #grid img {
     width: 350px;
     height: 300px;
     object-fit: cover;
+    border-radius: 5px 5px 0 0;
     cursor: pointer;
 }
 
@@ -83,6 +95,7 @@ body {
     width: 350px;
     height: 300px;
     object-fit: cover;
+    border-radius: 5px 5px 0 0;
     cursor: pointer;
 }
 
@@ -206,22 +219,18 @@ form input {
 
 .counter {
     display: flex;
-    background-color: #D3573C;
+    background-color: #DB8876;
     justify-content: space-between;
+    align-items: center;
     position: fixed;
-    bottom: 100%;
-    right: 98%;
-    height: 90px;
-    width: 376px;
+    top: calc(100% - 45px);
+    left: calc(100% - 325px);
 }
 
 .counter p {
     color: black;
-}
-
-.sort_container {
-    height: 68px;
-    width: 170px;
+    font-size: 24px;
+    margin: 10px 20px;
 }
 
 .img-info {
@@ -229,9 +238,19 @@ form input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 5px 0;
 }
 
-#order_by {
+.img-info p {
+    margin: 0;
+    font-size: 24px;
+}
+
+.img-info .likes {
+    min-width: 65px;
+}
+
+.order_by {
     display: none;
 }
 
@@ -241,24 +260,28 @@ form input {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 170px;
     font-size: 18px;
     border-radius: 5px;
     padding: 0 20px;
-    margin-left: 25px;
     position: relative;
     z-index: 9;
+    cursor: pointer;
 }
 
-.new-select span {
+.main-option {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 170px;
     height: 70px;
 }
 
-.new-select span img {
+.arrow {
     height: 10px;
     width: 16px;
     rotate: 180deg;
+}
+
+.select-hide {
+    display: none;
 }
