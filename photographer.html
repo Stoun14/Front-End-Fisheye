@@ -11,10 +11,16 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
+
     <header>
+      <!-- Logo -->
       <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+      <!-- /Logo -->
     </header>
+
     <main id="main">
+
+      <!-- Photographer presentation header -->
       <div class="photograph-header">
         <div>
           <h2 id="name"></h2>
@@ -28,6 +34,8 @@
 
         </div>
       </div>
+      <!-- /Photographer presentation header -->
+
       <div class="photograph-main">
         <div class="photograph-sort">
           <label for="order_by">Trier par</label>
@@ -74,7 +82,15 @@
 				</form>
 			</div>
 		</div>
+    <!-- Models -->
+    <script src="scripts/models/artist.js"></script>
+    <script src="scripts/models/media.js"></script>
+
+    <!-- Pages -->
     <script src="/scripts/pages/photographer.js"></script>
+
+    <!-- Utils -->
+    <script src="scripts/utils/data.js"></script>
     <script src="/scripts/utils/lightbox.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>

@@ -7,7 +7,7 @@ async function getPhotographers() {
     const ObjectifiedData = data.photographers.map(photographer => new Artist(photographer));
 
     // Stockage du tableau de données dans le localStorage
-    localStorage.setItem('objectData', JSON.stringify(ObjectifiedData));
+    Storage.save('objectData', JSON.stringify(ObjectifiedData));
     
     // Retour du tableau des photographes obtenu
     return ObjectifiedData

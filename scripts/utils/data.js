@@ -1,14 +1,9 @@
 class Storage {
-    constructor(title, data) {
-        this.title = title;
-        this.data = data;
+    static save(title, data) {
+        localStorage.setItem(title, data);
     }
 
-    save() {
-        localStorage.setItem(this.title, this.data);
-    }
-
-    load() {
-        return localStorage.getItem(this.title);
+    static load(title) {
+        return localStorage.getItem(title);
     }
 }
