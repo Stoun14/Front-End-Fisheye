@@ -1,5 +1,5 @@
-function photographerTemplate(data, index) {
-    let artist = new Artist(data);
+function photographerTemplate(data) {
+    const artist = data;
 
     function getUserCardDOM() {
         const queryString = encodeURIComponent(JSON.stringify(artist));
