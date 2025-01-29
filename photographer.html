@@ -6,7 +6,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
   </head>
@@ -20,23 +20,24 @@
 
     <main id="main">
 
-      <!-- Photographer presentation header -->
+      <!-- Photographer header -->
       <div class="photograph-header">
         <div>
-          <h2 id="name"></h2>
-          <p id="location"></p>
-          <p id="tagline"></p>  
+          <h2 class="name"></h2>
+          <p class="location"></p>
+          <p class="tagline"></p>  
         </div>
         <div>
           <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>        
-        <div id="frame">
-
+        <div class="frame">
+          <!-- ... -->
         </div>
       </div>
-      <!-- /Photographer presentation header -->
+      <!-- /Photographer header -->
 
       <div class="photograph-main">
+
         <div class="photograph-sort">
           <label for="order_by">Trier par</label>
           <div class="sort_container">
@@ -46,7 +47,7 @@
             </select>            
         </div>
         <div id="grid">
-                   
+          <!-- ... -->
         </div>
         <div class="counter">
           <p class="likes_counter"></p>
@@ -54,6 +55,8 @@
         </div>
       </div>
     </main>
+
+
     <div class="lightbox_modal">
       <div class="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()"></button>
@@ -61,6 +64,7 @@
         <button class="lightbox-next"></button>
       </div>
     </div>
+
     <div id="contact_modal">
 			<div class="modal">
 				<header>
@@ -82,9 +86,14 @@
 				</form>
 			</div>
 		</div>
+
+
     <!-- Models -->
     <script src="scripts/models/artist.js"></script>
     <script src="scripts/models/media.js"></script>
+
+    <!-- Templates -->
+    <script src="scripts/templates/header.js"></script>
 
     <!-- Pages -->
     <script src="/scripts/pages/photographer.js"></script>

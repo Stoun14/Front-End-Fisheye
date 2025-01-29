@@ -3,14 +3,14 @@ async function getPhotographers() {
     const response = await fetch("data/photographers.json");
     const data = await response.json();
 
-    // Conversion de la liste des photographes en liste d'objet de classe Artist
-    const ObjectifiedData = data.photographers.map(photographer => new Artist(photographer));
+    /* // Conversion de la liste des photographes en liste d'objet de classe Artist
+    const ObjectifiedData = data.photographers.map(photographer => new Artist(photographer)); */
 
     // Stockage du tableau de données dans le localStorage
-    Storage.save('objectData', JSON.stringify(ObjectifiedData));
+    Storage.save('objectData', JSON.stringify(data));
     
     // Retour du tableau des photographes obtenu
-    return ObjectifiedData
+    return data;
 }
 
 async function displayData(photographers) {
@@ -25,7 +25,7 @@ async function displayData(photographers) {
 
 async function init() {
     // Récupère les données des photographes
-    const photographers = await getPhotographers();
+    const { photographers } = await getPhotographers();
 
     // Affiche les photographes sur la homepage
     displayData(photographers);
