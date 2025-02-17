@@ -39,12 +39,13 @@
       <div class="photograph-main">
 
         <div class="photograph-sort">
-          <label for="order_by">Trier par</label>
-          <div class="sort_container">
+          <label for="order_by">Trier par</label>          
+          <div class="sort_container">            
             <select name="order_by" id="order_by">
               <option value="0" selected>Titre</option>
               <option value="1">Popularité</option>
-            </select>            
+            </select>
+          </div>
         </div>
         <div id="grid">
           <!-- ... -->
@@ -59,7 +60,9 @@
 
     <div class="lightbox_modal">
       <div class="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()"></button>
+        <img class="lightbox-content" id="lightboxContent">
+        <div class="caption" id="caption"></div>
+        <button class="lightbox-close"></button>
         <button class="lightbox-prev"></button>
         <button class="lightbox-next"></button>
       </div>

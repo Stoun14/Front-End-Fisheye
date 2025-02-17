@@ -1,7 +1,11 @@
-let count = 0;
-let media = "";
+let currentIndex = 0;
+let medias = JSON.parse(Storage.load('medialist'));
 
-const arrowLeft = document.getElementsByClassName( "lightbox-prev" )[0];
+function displayLightbox(index) {
+
+}
+
+/* const arrowLeft = document.getElementsByClassName( "lightbox-prev" )[0];
 const arrowRight = document.getElementsByClassName( "lightbox-next" )[0];
 
 const indexPrev = event => {
@@ -16,12 +20,8 @@ const indexNext = event => {
 
 function elementDisplay() {
     const id = getMediaID();
-    console.log(id);
-    console.log(mediaList);
     const element = mediaList[id];
-    console.log(element);
-    const elementType = mediaChoice(element)
-    console.log(elementType);
+    const elementType = mediaChoice(element);
     return elementType;
 }
 
@@ -29,9 +29,7 @@ function displayLightbox(index) {
     const lightbox = document.getElementsByClassName( "lightbox_modal" )[0];
     const container = document.getElementsByClassName( "lightbox" )[0];    
     lightbox.style.display = 'flex';
-    console.log("lightboxID = " + index);
-    console.log("count = " + count);
-    console.log(mediaList);
+    
     media = mediaList[index];
     const element = elementDisplay();
     
@@ -76,37 +74,8 @@ function lightboxChange(index) {
     displayLightbox(index);
 }
 
-/* function mediaChoice() {
-    const id = getMediaID();
-    const element = mediaList[id];
-    const directory = directoryName();
-    if (element == undefined) {
-        return "";
-    }  
-    else if (element?.image == null) {
-        const video = `assets/images/${directory}/${element.video}`;
-        const vid =  
-            `<video>
-                <source src="${video}">
-            </video>`;
-        return vid;        
-    } else if (element?.video == null) {
-        const picture = `assets/images/${directory}/${element.image}`;
-        const img = `<img src="${picture}"  alt=""></img>`;
-        return img;
-    }
-} */
-
-/* function directoryName() {
-    const name = photographer.name;
-    let firstName = name.split(" ")[0];    
-    firstName = firstName.replace("-", " ");
-    return firstName;
-} */
-
 function getMediaID() {
     let id = mediaList.findIndex(entry => entry.id === media.id);
-    console.log("l'Id est:" + id );
     return id; 
 }
 
@@ -119,9 +88,6 @@ function previous() {
         newIndex = mediaList.length - 1;
     }
     count += 1;
-    console.log("gauche");
-    console.log(index);
-    console.log(newIndex);
     lightboxChange(newIndex);
 }
 
@@ -134,8 +100,5 @@ function next() {
         newIndex = 0;
     }
     count += 1;
-    console.log("droite");
-    console.log(index);
-    console.log(newIndex);
     lightboxChange(newIndex);
-}
+} */

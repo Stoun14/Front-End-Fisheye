@@ -3,6 +3,7 @@ function init() {
     let medialist = mediaFilter(photographer);
     const mediaSection = document.querySelector("#grid");
 
+    directoryName();
     headerCard(photographer);
     medialist.forEach((media) => {
         let mediaType = new MediaFactory(media);
@@ -12,11 +13,14 @@ function init() {
 }
 
 function directoryName() {
-    const photographer = JSON.parse(Storage.load('photographer'));
+    const data = JSON.parse(Storage.load('photographer'));
+    console.log(data);
+    const photographer = new Artist(data);
+    console.log(photographer);
     const name = photographer.name;
     let firstName = name.split(" ")[0];    
     firstName = firstName.replace("-", " ");
-    return firstName;
+    Storage.save('firstname', firstName);
 }
 
 init();

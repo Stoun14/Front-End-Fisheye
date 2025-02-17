@@ -1,7 +1,5 @@
-
-
 function mediaCard(data) {
-    const firstname = directoryName();
+    const firstname = Storage.load('firstname');
     let mediaData;
 
     if (data instanceof Image) {
@@ -15,8 +13,8 @@ function mediaCard(data) {
     const article = document.createElement( 'article' );
     
     const mediaCardDOM = `
-    <div class="grid-frame" onclick="displayLightbox(0)">
-        ${data instanceof Image ? `<img src="${mediaData}" alt="${data.title}, closeup view">` : `<video src="${mediaData}" controls></video>`}
+    <div class="grid-frame" onclick="displayLightbox(${data.id})">
+        ${data instanceof Image ? `<img src="${mediaData}" alt="${data.title}, closeup view">` : `<video src="${mediaData}"></video>`}
     </div>
     <div class="img-info">
         <p class="title">${data.title}</p>

@@ -20,6 +20,10 @@ class Media {
         return this._title;
     }
 
+    get likes() {
+        return this._likes;
+    }
+
     get date() {
         return this._date;
     }
@@ -36,7 +40,7 @@ class Image extends Media {
     }
 
     picture(artistFirstname) {
-        return `/assets/photographers/${artistFirstname}/${this._image}`;
+        return `/assets/images/${artistFirstname}/${this._image}`;
     }
 }
 
@@ -47,6 +51,6 @@ class Video extends Media {
     }
 
     video(artistFirstname) {
-        return `/assets/photographers/${artistFirstname}/${this._video}`;
+        return `/assets/images/${artistFirstname}/${this._video}`;
     }
 }

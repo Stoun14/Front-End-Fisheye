@@ -73,6 +73,8 @@ body {
 
 .photograph-main {
     margin: 0 100px;
+    display: flex;
+    flex-direction: column;
 }
 
 .photograph-sort {
@@ -84,7 +86,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 350px);
     justify-content: space-between;
-    gap: 20px 0;
+    gap: 25px;
 }
 
 #grid img {
