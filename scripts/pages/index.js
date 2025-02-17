@@ -2,10 +2,7 @@ async function getPhotographers() {
     // Récupération des données du fichier json
     const response = await fetch("data/photographers.json");
     const data = await response.json();
-
-    /* // Conversion de la liste des photographes en liste d'objet de classe Artist
-    const ObjectifiedData = data.photographers.map(photographer => new Artist(photographer)); */
-
+    
     // Stockage du tableau de données dans le localStorage
     Storage.save('objectData', JSON.stringify(data));
     

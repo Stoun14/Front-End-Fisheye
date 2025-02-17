@@ -3,7 +3,6 @@ class Media {
         this._id = data.id;
         this._photographerId = data.photographerId;
 		this._title = data.title;
-		this._image = data.image;
 		this._likes = data.likes;
 		this._date	= data.date;
         this._price = data.price;
@@ -21,10 +20,6 @@ class Media {
         return this._title;
     }
 
-    get image() {
-        return this._image;
-    }
-
     get tagline() {
         return this._tagline;
     }
@@ -32,8 +27,36 @@ class Media {
     get price() {
         return this._price;
     }
+}
 
-    get portrait() {
-        return `/assets/photographers/${this._portrait}`;
+class Image extends Media {
+    constructor(data) {
+        super(id);
+        super(photographerId);
+		super(title);
+		super(likes);
+		super(date);
+        super(price);
+        this._image = data.image;
+    }
+
+    picture(artistFirstname) {
+        return `/assets/photographers/${artistFirstname}/${this._image}`;
+    }
+}
+
+class Video extends Media {
+    constructor(data) {
+        super(id);
+        super(photographerId);
+		super(title);
+		super(likes);
+		super(date);
+        super(price);
+        this._video = data.video;
+    }
+
+    video(artistFirstname) {
+        return `/assets/photographers/${artistFirstname}/${this._video}`;
     }
 }
