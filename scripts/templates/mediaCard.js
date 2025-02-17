@@ -1,13 +1,22 @@
 
 
 function mediaCard(data) {
-    const firstname = ;
-    let mediaData = (data instanceof Image) ? 
+    const firstname = directoryName();
+    let mediaData;
+
+    if (data instanceof Image) {
+        mediaData = data.picture(firstname);
+    } else if (data instanceof Video) {
+        mediaData = data.video(firstname);
+    } else {
+        throw new Error("Type de media non supporté!");
+    }
+    
     const article = document.createElement( 'article' );
     
     const mediaCardDOM = `
     <div class="grid-frame" onclick="displayLightbox(0)">
-        <img src="${mediaData}" alt="${data.title} , closeup view">
+        ${data instanceof Image ? `<img src="${mediaData}" alt="${data.title}, closeup view">` : `<video src="${mediaData}" controls></video>`}
     </div>
     <div class="img-info">
         <p class="title">${data.title}</p>
