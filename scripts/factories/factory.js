@@ -1,11 +1,11 @@
 class MediaFactory {
     constructor(data) {
-        // 
-        if (data.image != undefined) {
-            return new Image(data)
-        // 
+        if (data.image !== undefined) {
+            return new Image(data);
+        } else if (data.video !== undefined) {
+            return new Video(data);
         } else {
-            return new Video(data) 
+            throw new Error("Type de media non supporté!");
         }
     }
 }
