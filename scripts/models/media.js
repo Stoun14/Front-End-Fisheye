@@ -6,6 +6,7 @@ class Media {
 		this._likes = data.likes;
 		this._date	= data.date;
         this._price = data.price;
+
     }
 
     get id() {
@@ -20,8 +21,8 @@ class Media {
         return this._title;
     }
 
-    get tagline() {
-        return this._tagline;
+    get date() {
+        return this._date;
     }
 
     get price() {
@@ -31,12 +32,7 @@ class Media {
 
 class Image extends Media {
     constructor(data) {
-        super(id);
-        super(photographerId);
-		super(title);
-		super(likes);
-		super(date);
-        super(price);
+        super(data);
         this._image = data.image;
     }
 
@@ -47,12 +43,7 @@ class Image extends Media {
 
 class Video extends Media {
     constructor(data) {
-        super(id);
-        super(photographerId);
-		super(title);
-		super(likes);
-		super(date);
-        super(price);
+        super(data);
         this._video = data.video;
     }
 
