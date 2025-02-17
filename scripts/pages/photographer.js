@@ -11,4 +11,11 @@ function init() {
     });
 }
 
+function directoryName() {
+    const name = photographer.name;
+    let firstName = name.split(" ")[0];    
+    firstName = firstName.replace("-", " ");
+    return firstName;
+}
+
 init();

@@ -1,12 +1,13 @@
 
 
 function mediaCard(data) {
-    // let media = ()
+    const firstname = ;
+    let mediaData = (data instanceof Image) ? 
     const article = document.createElement( 'article' );
     
-    const mediaCard = `
+    const mediaCardDOM = `
     <div class="grid-frame" onclick="displayLightbox(0)">
-        <img src="" alt="${data.title} , closeup view">
+        <img src="${mediaData}" alt="${data.title} , closeup view">
     </div>
     <div class="img-info">
         <p class="title">${data.title}</p>
@@ -14,6 +15,6 @@ function mediaCard(data) {
     </div>
     `;
 
-    article.innerHTML = mediaCard;
+    article.innerHTML = mediaCardDOM;
     return (article);
 }
