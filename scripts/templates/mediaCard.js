@@ -13,8 +13,8 @@ function mediaCard(data) {
     const article = document.createElement( 'article' );
     
     const mediaCardDOM = `
-    <div class="grid-frame" onclick="displayLightbox(${data.id})">
-        ${data instanceof Image ? `<img src="${mediaData}" alt="${data.title}, closeup view">` : `<video src="${mediaData}"></video>`}
+    <div class="grid-frame">
+        ${data instanceof Image ? `<img src="${mediaData}" alt="${data.title}, closeup view" class="lightbox-trigger" data-type="image">` : `<video src="${mediaData}" class="lightbox-trigger" data-type="video"></video>`}
     </div>
     <div class="img-info">
         <p class="title">${data.title}</p>

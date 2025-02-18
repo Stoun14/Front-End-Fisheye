@@ -163,7 +163,7 @@ form input {
     border-radius: 5px;
 }
 
-.lightbox_modal {
+#lightbox_modal {
     position: fixed;
     top: 0;
     width: 100%;
@@ -175,25 +175,33 @@ form input {
     justify-content: center;
 }
 
-.lightbox {
-    width: 95%;
-    height: 95%;
+#lightbox {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 0 10%;
-    object-fit: cover;
 }
 
-.lightbox button {
+.lightbox-content {
+    width: 85%;
+    display: flex;
+    justify-content: center;
+}
+
+#lightboxImage, #lightboxVideo {
+    display: none;
+    width: 95%;
+    align-items: center;
+    justify-content: center;    
+}
+
+#lightbox button {
     position: fixed;
     cursor: pointer;
     border: none;
     z-index: 999;
 }
 
-.lightbox-close {
+#lightbox-close {
     background: url(../assets/icons/close_lightbox.svg) center center / 100% 100%;
     top: 6%;
     right: 6%;
@@ -202,7 +210,7 @@ form input {
     height: 42px;
 }
 
-.lightbox-prev, .lightbox-next {
+#lightbox-prev, #lightbox-next {
     background: url(../assets/icons/arrow.svg) center center / 100% 100%;
     top: 50%;
     left: 6%;
@@ -210,13 +218,13 @@ form input {
     height: 48px;
 }
 
-.lightbox-next {
+#lightbox-next {
     right: 6%;
     left: auto;
     transform: rotate(180deg);
 }
 
-.lightbox img, .lightbox video {
+#lightbox-content {
     max-width: 100%;
     height: auto;
 }

@@ -10,13 +10,13 @@ function init() {
         const mediaCardDOM = mediaCard(mediaType);
         mediaSection.appendChild(mediaCardDOM);
     });
+
+    initializeLightbox();
 }
 
 function directoryName() {
     const data = JSON.parse(Storage.load('photographer'));
-    console.log(data);
     const photographer = new Artist(data);
-    console.log(photographer);
     const name = photographer.name;
     let firstName = name.split(" ")[0];    
     firstName = firstName.replace("-", " ");
