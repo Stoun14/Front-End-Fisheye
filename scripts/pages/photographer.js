@@ -5,12 +5,14 @@ function init() {
 
     directoryName();
     headerCard(photographer);
+
     medialist.forEach((media) => {
         let mediaType = new MediaFactory(media);
         const mediaCardDOM = mediaCard(mediaType);
         mediaSection.appendChild(mediaCardDOM);
     });
 
+    // hearts();
     initializeLightbox();
 }
 
