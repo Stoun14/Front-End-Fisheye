@@ -232,16 +232,18 @@ form input {
 .counter {
     display: flex;
     background-color: #D3573C;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
     position: fixed;
-    bottom: 100%;
-    right: 98%;
-    height: 90px;
+    bottom: 0%;
+    right: 2%;
+    height: 68px;
     width: 376px;
 }
 
 .counter p {
     color: black;
+    font-size: 24px;
 }
 
 .sort_container {
@@ -254,6 +256,7 @@ form input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: baseline;
     margin: 8px 0 10px;
     padding: 0;
 }

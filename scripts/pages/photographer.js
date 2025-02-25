@@ -12,7 +12,7 @@ function init() {
         mediaSection.appendChild(mediaCardDOM);
     });
 
-    // hearts();
+    hearts();
     initializeLightbox();
 }
 

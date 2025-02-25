@@ -1,24 +1,39 @@
 function hearts() {
-    let hearts = document.querySelectorAll('.likes');
-    hearts.forEach((heart, index) => {
+    const hearts = document.querySelectorAll('.likes');
+    const totalLikesCounter = document.querySelector(".likes_counter");
+    const costElement = document.querySelector(".cost");
+    
+    init();
+
+    hearts.forEach((heart) => {
         heart.addEventListener('click', function () {
-            console.log(hearts[index]);
-            /* hearts[index] += 1;
-            document.querySelector('.likes')[index].innerHTML = hearts[index]; */
+            let currentLikes = parseInt(heart.innerHTML) || 0;
+            heart.innerHTML = (currentLikes + 1) + '  <i class="fa-solid fa-heart"></i>';
             counter(1);
         });
     });
-    counter(0);
+
+    function init() {
+        const totalLikes = calculateTotalLikes();
+        const photographer = JSON.parse(Storage.load('photographer'));
+        
+        costElement.innerHTML = photographer.price + " €/jour";
+        totalLikesCounter.innerHTML = totalLikes + ' <i class="fa-solid fa-heart"></i>';
+        counter(0);
+    }
+
+    function calculateTotalLikes() {
+        let totalLikes = 0;
+        const mediaList = JSON.parse(Storage.load('medialist'));
+        mediaList.forEach((element) => {
+            totalLikes += element.likes;
+        });
+        return totalLikes;
+    }
 
     function counter(nb) {
-        let totalLikes = 0
-        /* mediaList.forEach((element) => {
-          totalLikes += element.likes;
-        }) */
-        const totalLikesCounter = document.querySelector(".likes_counter");
-        const cost = document.querySelector(".cost")
-        cost.innerHTML = photographer.price + " €/jour";
-        const nbLikes = nb + totalLikes;
-        totalLikesCounter.innerHTML = nbLikes + '  <i class="fa-solid fa-heart"></i>';
+        const currentTotalLikes = calculateTotalLikes();
+        const nbLikes = nb + currentTotalLikes;
+        totalLikesCounter.innerHTML = nbLikes + ' <i class="fa-solid fa-heart"></i>';
     }
 }
