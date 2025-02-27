@@ -15,12 +15,12 @@ function mediaCard(data) {
     const mediaCardDOM = `
     <div class="grid-frame">
         <a href="#">
-        ${data instanceof Image ? `<img src="${mediaData}" alt="${data.title}, closeup view" class="lightbox-trigger" tabindex="0" data-type="image">` : `<video src="${mediaData}" class="lightbox-trigger" tabindex="0" data-type="video"></video>`}
+            ${data instanceof Image ? `<img src="${mediaData}" alt="${data.title}, closeup view" class="lightbox-trigger" data-type="image">` : `<video src="${mediaData}" class="lightbox-trigger" data-type="video"></video>`}
         </a>
     </div>
     <div class="img-info">
         <p class="title">${data.title}</p>
-        <p class="likes">${data.likes} <i class="fa-solid fa-heart"></i></p>
+        <p class="likes">${data.likes} <a href="#"><i class="fa-solid fa-heart"></i></a></p>
     </div>
     `;
 

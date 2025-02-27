@@ -4,9 +4,9 @@ body {
     padding: 0;
 }
 
-/***************************/
-/**  photographer header  **/
-/***************************/
+/**************/
+/**  header  **/
+/**************/
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -48,6 +48,11 @@ body {
     cursor: pointer;
 }
 
+.contact_button:hover {
+    background-color: #DB8876;
+    color: #000000;
+}
+
 #contact_modal {
     display: none;
 }
@@ -77,10 +82,90 @@ body {
     flex-direction: column;
 }
 
+/* Menu Select personalisé */
+
 .photograph-sort {
     display: flex;
     padding: 15px 0;
 }
+
+.photograph-sort label {
+    margin-right: 25px;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.sort_container {
+    position: relative;
+}
+
+.sort_container select {
+    display: none;
+}
+
+.select-selected {
+    background-color: #901C1C;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    height: 68px;
+    width: 170px;
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.select-selected::after {
+    content: url("../assets/icons/selector_up.svg");
+    position: absolute;
+    right: 10px;
+    transform: rotate(180deg);
+}
+
+.active {
+    border-radius: 5px 5px 0 0;
+}
+
+.active::after {
+    transform: none;
+}
+
+.line {
+    width: 150px;
+    height: 5px;
+    position: absolute;
+    left: 10px;
+    bottom: 2px;
+    background-color: blue;
+    display: none;
+}
+
+.select-items {
+    position: absolute;
+    background-color: #901C1C;
+    color: #FFFFFF;
+    height: 68px;
+    width: 170px;
+    padding: 0 10px;
+    z-index: 99;
+    border-radius: 0 0 5px 5px;
+}
+
+.select-items div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.select-hide {
+    display: none;
+}
+
+/* Gallerie */
 
 #grid {
     display: grid;
@@ -102,6 +187,53 @@ body {
     object-fit: cover;
     cursor: pointer;
 }
+
+.img-info {
+    color: #D3573C;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 8px 0 10px;
+    padding: 0;
+}
+
+.img-info a:visited {
+    color: inherit;
+}
+
+.title, .likes {
+    margin: 0;
+}
+
+.title {
+    font-size: 24px;
+}
+
+/* Compteur */
+
+.counter {
+    display: flex;
+    background-color: #D3573C;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0%;
+    right: 2%;
+    height: 54px;
+    width: 376px;
+    border-radius: 5px;   
+}
+
+.counter p {
+    color: black;
+    font-size: 24px;
+    padding: 0 20px;
+}
+
+/*************************/
+/**   Modale de Contact **/
+/*************************/
 
 .modal {
     position: fixed;
@@ -138,9 +270,14 @@ body {
 
 form {
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
+    background-color: #D3573C;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    bottom: 0%;
+    right: 2%;
+    height: 68px;
+    width: 376px;
 }
 
 form label {
@@ -162,6 +299,10 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+/****************/
+/**  Lightbox  **/
+/****************/
 
 #lightbox_modal {
     position: fixed;
@@ -199,6 +340,11 @@ form input {
     cursor: pointer;
     border: none;
     z-index: 999;
+}.photograph-sort label {
+    margin-right: 25px;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 #lightbox-close {
@@ -227,101 +373,4 @@ form input {
 #lightbox-content {
     max-width: 100%;
     height: auto;
-}
-
-.counter {
-    display: flex;
-    background-color: #D3573C;
-    justify-content: space-evenly;
-    align-items: center;
-    position: fixed;
-    bottom: 0%;
-    right: 2%;
-    height: 68px;
-    width: 376px;
-}
-
-.counter p {
-    color: black;
-    font-size: 24px;
-}
-
-.sort_container {
-    height: 68px;
-    width: 170px;
-}
-
-.img-info {
-    color: #D3573C;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    margin: 8px 0 10px;
-    padding: 0;
-}
-
-.title, .likes {
-    margin: 0;
-}
-
-.title {
-    font-size: 24px;
-}
-
-.photograph-sort label {
-    margin-right: 25px;
-    margin-top: 5px;
-    font-size: 18px;
-    font-weight: 700;
-}
-
-#order_by {
-    display: none;
-}
-
-.new-select {
-    background-color: #901C1C;
-    color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 18px;
-    width: 170px;
-    border-radius: 5px;
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.new-select span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    padding: 0 10px;
-}
-
-.arrow {
-    height: 10px;
-    width: 16px;
-    rotate: 180deg;
-}
-
-.new-select .line {
-    width: 150px;
-    height: 1px;
-    position: absolute;
-    left: 10px;
-    background-color: #FFFFFF;
-    display: none;
-}
-
-.new-select .option {
-    height: 50px;
-    padding: 0 10px;
-}
-
-.select-hide {
-    display: none;
 }
