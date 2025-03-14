@@ -9,9 +9,9 @@ function dropdownMenu() {
     items.className = "select-items select-hide";
     document.querySelector(".sort_container").appendChild(items);
 
-    const line = document.createElement("div");
+    /* const line = document.createElement("div");
     line.className = "line";
-    selected.appendChild(line);
+    selected.appendChild(line); */
 
     // Remplissage des options
     options.forEach(option => {
@@ -22,10 +22,12 @@ function dropdownMenu() {
         optionDiv.addEventListener("click", () => {
             selected.textContent = optionDiv.textContent; // Mise à jour l'affichage
             originalSelect.value = option.value; // Mise à jour la valeur d'origine
+            console.log("original");
             
             sortMedia(); // Exécution de la fonction de tri après la sélection
 
             items.classList.add("select-hide"); // Cache les options après sélection
+            console.log("object");
             updateOptions(); // Mise à jour les options après sélection
         });
 
@@ -47,6 +49,8 @@ function dropdownMenu() {
                 optionDiv.addEventListener("click", () => {
                     selected.textContent = optionDiv.textContent;
                     originalSelect.value = option.value;
+                    console.log("updated");
+
                     sortMedia(); // Exécuter la fonction de tri
 
                     items.classList.add("select-hide");
@@ -89,11 +93,11 @@ function dropdownMenu() {
     selected.addEventListener("click", () => {
         items.classList.toggle("select-hide");
         selected.classList.toggle('active');
-        if (line.style.display === "none") {
+        /* if (line.style.display === "none") {
             line.style.display = "block";
         } else {
             line.style.display = "none";
-        }
+        } */
     });
 
     // Ferme le select si l'utilisateur clique en dehors
@@ -101,7 +105,7 @@ function dropdownMenu() {
         if (!e.target.closest('.sort_container')) {
             items.classList.add("select-hide");
             selected.classList.remove('active');
-            line.style.display = "none";
+            // line.style.display = "none";
         }
     });
 

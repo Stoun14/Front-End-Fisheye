@@ -1,13 +1,11 @@
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+    const modal = document.getElementById("contact_modal");	
     const photographer = JSON.parse(Storage.load('photographer'));
     const name = photographer.name;
-    let modalTitle = document.getElementById("modal_title").textContent;
-    if (modalTitle === "Contactez-moi") {       
-        modalTitle = modalTitle +" "+ `${name}`; 
-    }    
-    document.getElementById("modal_title").textContent = modalTitle;
+    const modalTitle = document.querySelector('.modal_title');
+
+    modal.style.display = "flex";
+    modalTitle.innerHTML = `Contactez-moi <span>${name}</span>`;
 }
 
 function closeModal() {

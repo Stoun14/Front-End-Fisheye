@@ -28,7 +28,7 @@
           <p class="tagline"></p>  
         </div>
         <div>
-          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <button class="contact_button headerBtn" onclick="displayModal()">Contactez-moi</button>
         </div>        
         <div class="frame">
           <!-- ... -->
@@ -73,7 +73,7 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2 id="modal_title">Contactez-moi</h2>
+          <h2 class="modal_title"></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
@@ -85,12 +85,13 @@
             <label>Email</label>
 						<input />
             <label>Votre message</label>
-						<input type="text" name="" id="" aria-rowcount="3">
+						<input type="text" name="message" id="message">
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
+
     <!-- Factories -->
     <script src="scripts/factories/factory.js"></script>
 

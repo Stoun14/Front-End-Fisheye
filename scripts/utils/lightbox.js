@@ -6,7 +6,7 @@ function initializeLightbox() {
     const close = document.getElementById('lightbox-close');
     let currentIndex = 0;
     let medias = document.querySelectorAll('.lightbox-trigger');
-    const links = document.querySelectorAll('a'); 
+    const links = document.querySelectorAll('.img'); 
 
     function displayLightbox(index) {
         const media = medias[index];
@@ -55,6 +55,7 @@ function initializeLightbox() {
     links.forEach((link, index) => {
         link.addEventListener('keyup', function (event) {
             if (event.keyCode === 13) {
+                console.log(index);
                 displayLightbox(index);
             }
         });
