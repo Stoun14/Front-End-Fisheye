@@ -6,7 +6,7 @@ function init() {
     headerCard(photographer);
     displayGrid(medialist);
     dropdownMenu();
-    hearts();
+    // hearts();
     initializeLightbox();
 }
 

@@ -37,7 +37,11 @@ function hearts() {
 
     // Fonction de comptage du nombre de like total du photographe
     function counter(nb) {
-        const currentTotalLikes = calculateTotalLikes();
+        let currentTotalLikes = calculateTotalLikes();
+        const totalLikesDisplay = parseInt(totalLikesCounter.innerHTML) || 0;
+        if (totalLikesDisplay !== currentTotalLikes) {
+            currentTotalLikes = totalLikesDisplay;
+        }
         const nbLikes = nb + currentTotalLikes;
 
         totalLikesCounter.innerHTML = nbLikes + ' <i class="fa-solid fa-heart"></i>'; // Affichage du nombre de like total

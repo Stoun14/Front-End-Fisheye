@@ -49,15 +49,16 @@ function dropdownMenu() {
                 optionDiv.addEventListener("click", () => {
                     selected.textContent = optionDiv.textContent;
                     originalSelect.value = option.value;
-                    console.log("updated");
 
                     sortMedia(); // Exécuter la fonction de tri
 
                     items.classList.add("select-hide");
                     updateOptions(); // Met à jour les options après sélection
+                    
                 });
 
                 items.appendChild(optionDiv);
+                hearts();
             }
         });
     }

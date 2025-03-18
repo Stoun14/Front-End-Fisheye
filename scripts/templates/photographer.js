@@ -6,7 +6,7 @@ function photographerTemplate(data) {
         const article = document.createElement( 'article' );
 
         const artistCard = `
-        <a href="photographer.html?data=${queryString}">
+        <a href="photographer.html?data=${queryString}" aria-label=${artist.name}>
             <div class="image">
                 <img src="${artist.portrait}">
             </div>

@@ -201,7 +201,8 @@ body {
 }
 
 .img-info a:visited {
-    color: inherit;
+    color: #D3573C;
+    text-decoration: none;
 }
 
 .title, .likes {
