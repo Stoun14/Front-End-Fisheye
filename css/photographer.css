@@ -4,6 +4,10 @@ body {
     padding: 0;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 /**************/
 /**  header  **/
 /**************/
@@ -253,17 +257,20 @@ body {
 
 .modal header {
     height: 140px;
+    width: 100%;
 }
 
 .modal header img {
     cursor: pointer;
 }
 
-.modal header h2 {
+#modal_title {
     font-size: 64px;
     font-weight: normal;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal header h2 span {
@@ -293,9 +300,10 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 36px;
 }
 
-#message {
+#Your_message {
     height: 204px;
 }
 

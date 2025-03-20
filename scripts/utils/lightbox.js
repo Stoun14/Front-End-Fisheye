@@ -6,7 +6,7 @@ function initializeLightbox() {
     const close = document.getElementById('lightbox-close');
     let currentIndex = 0;
     let medias = document.querySelectorAll('.lightbox-trigger');
-    const links = document.querySelectorAll('.img'); 
+    const links = document.querySelectorAll('.img');
 
     function displayLightbox(index) {
         const media = medias[index];
@@ -22,7 +22,7 @@ function initializeLightbox() {
         } else if (mediaType === 'video') {
             lightboxVideo.src = media.src;
             lightboxVideo.style.display = "flex";
-            caption.innerHTML = media.alt;
+            caption.innerHTML = links[index].getAttribute("aria-label");
         }
 
         lightbox.style.display = "flex";
@@ -46,19 +46,27 @@ function initializeLightbox() {
         }
     }
 
-    medias.forEach((media, index) => {
-        media.addEventListener('click', function () {
+    links.forEach((link, index) => {
+        link.addEventListener('click', function () {
+            const isExpanded = link.getAttribute("aria-expanded") === "true";
+
+            // Bascule des attributs ARIA
+            link.setAttribute("aria-expanded", !isExpanded);
+            lightbox.setAttribute("aria-hidden", isExpanded);
+
             displayLightbox(index);
         });
-    });
-
-    links.forEach((link, index) => {
         link.addEventListener('keyup', function (event) {
             if (event.keyCode === 13) {
-                console.log(index);
+                const isExpanded = link.getAttribute("aria-expanded") === "true";
+
+                // Bascule des attributs ARIA
+                link.setAttribute("aria-expanded", !isExpanded);
+                lightbox.setAttribute("aria-hidden", isExpanded);
+
                 displayLightbox(index);
             }
-        });
+        });        
     });
 
     close.addEventListener('click', function () {
