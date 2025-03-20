@@ -9,7 +9,7 @@ function dropdownMenu() {
     items.className = "select-items select-hide";
     document.querySelector(".sort_container").appendChild(items);
 
-    selected.setAttribute("aria-labelledby", "sortByTitle")
+    selected.setAttribute("aria-labelledby", "sortByTitle");
 
     /* const line = document.createElement("div");
     line.className = "line";
