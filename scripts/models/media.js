@@ -40,7 +40,7 @@ class Image extends Media {
     }
 
     picture(artistFirstname) {
-        return `/assets/images/${artistFirstname}/${this._image}`;
+        return `assets/images/${artistFirstname}/${this._image}`;
     }
 }
 
@@ -51,6 +51,6 @@ class Video extends Media {
     }
 
     video(artistFirstname) {
-        return `/assets/images/${artistFirstname}/${this._video}`;
+        return `assets/images/${artistFirstname}/${this._video}`;
     }
 }
